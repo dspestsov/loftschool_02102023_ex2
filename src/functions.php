@@ -85,3 +85,15 @@ function task4 () {
     echo date('d.m.Y H:s') . "<br>";
     echo strtotime('24.02.2016 00:00:00') . "<br>";
 }
+
+function task5 () {
+    $str = "Карл у Клары украл Кораллы";
+    echo "{$str}<br>";
+    $str = str_replace('К', '', $str);
+    echo "{$str}<br>";
+
+    $str = "Две бутылки лимонада";
+    echo "{$str}<br>";
+    $str = str_replace('Две', 'Три', $str);
+    echo "{$str}<br>";
+}
