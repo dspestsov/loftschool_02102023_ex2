@@ -60,3 +60,23 @@ function task2 (): string
 
     return '' . $result;
 }
+
+function task3 ($countRows, $countColumns) {
+    if (!is_int($countRows) || !is_int($countColumns)) {
+        echo "Аргументы функции должны быть целыми числами.";
+
+        return false;
+    }
+
+    $table = '<table>';
+    for ($numRow = 1; $numRow <= $countRows; $numRow++) {
+        $table .= '<tr>';
+        for ($numColumn = 1; $numColumn <= $countColumns; $numColumn++) {
+            $table .= '<td>' . "{$numColumn} x {$numRow} = " . ($numColumn * $numRow) . '</td>';
+        }
+        $table .= '</tr>';
+    }
+    $table .= '</table>';
+
+    echo $table;
+}
