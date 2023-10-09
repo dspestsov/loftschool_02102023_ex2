@@ -80,3 +80,8 @@ function task3 ($countRows, $countColumns) {
 
     echo $table;
 }
+
+function task4 () {
+    echo date('d.m.Y H:s') . "<br>";
+    echo strtotime('24.02.2016 00:00:00') . "<br>";
+}

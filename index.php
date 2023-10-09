@@ -32,3 +32,8 @@ echo '<hr size="3px">';
 echo "Задание 3.<br>";
 task3(2, 'dfd');
 task3(17, 9);
+
+echo '<hr size="3px">';
+
+echo "Задание 4.<br>";
+task4();
