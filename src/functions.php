@@ -97,3 +97,7 @@ function task5 () {
     $str = str_replace('Две', 'Три', $str);
     echo "{$str}<br>";
 }
+
+function task6 ($fileName) {
+    echo file_get_contents($fileName);
+}

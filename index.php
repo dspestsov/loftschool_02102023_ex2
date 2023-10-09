@@ -42,3 +42,12 @@ echo '<hr size="3px">';
 
 echo "Задание 5.<br>";
 task5();
+
+echo '<hr size="3px">';
+
+echo "Задание 6.<br>";
+$fileName = 'test.txt';
+$file = fopen($fileName, 'w');
+fputs($file, 'Hello again!');
+fclose($file);
+task6($fileName);
