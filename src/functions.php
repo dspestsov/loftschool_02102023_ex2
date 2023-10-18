@@ -18,44 +18,46 @@ function task2 (): string
     $args = func_get_args();
     $allowOperators = ['+', '-', '*', '/', '%', '**'];
 
-    if (!is_string($args[0])) {
+    $operator = array_shift($args);
+
+    if (!is_string($operator)) {
         return 'Ошибка: первый аргумент должен быть строкой, означающей арифметическую операцию.';
     }
 
-    if (!in_array($args[0], $allowOperators)) {
+    if (!in_array($operator, $allowOperators)) {
         return 'Ошибка: неизвестная арифметическая операция. Допустимые значения: +, -, *, /, %, **.';
     }
 
-    for ($i = 1; $i < count($args); $i++) {
-        if (!is_numeric($args[$i])) {
-            return 'Ошибка: все аргументы, кроме первого, должны быть целыми или вещественными числами.';
-        }
+    $args = array_filter($args, 'is_numeric');
 
-        if ($i === 1) {
-            $result = $args[$i];
-            continue;
-        }
-
-        switch ($args[0]) {
-            case '+':
-                $result += $args[$i];
-                break;
-            case '-':
-                $result -= $args[$i];
-                break;
-            case '*':
-                $result = $result * $args[$i];
-                break;
-            case '/':
-                $result = $result / $args[$i];
-                break;
-            case '%':
-                $result = $result % $args[$i];
-                break;
-            case '**':
-                $result = $result ** $args[$i];
-                break;
-        }
+    switch ($operator) {
+        case '+':
+            $result = array_sum($args);
+            break;
+        case '-':
+            $result = array_shift($args) - array_sum($args);
+            break;
+        case '*':
+            $result = array_product($args);
+            break;
+        case '/':
+            $init = array_shift($args);
+            $result = array_reduce($args, function($result, $num) {
+                return $result / $num;
+            }, $init);
+            break;
+        case '%':
+            $init = array_shift($args);
+            $result = array_reduce($args, function($result, $num) {
+                return $result % $num;
+            }, $init);
+            break;
+        case '**':
+            $init = array_shift($args);
+            $result = array_reduce($args, function($result, $num) {
+                return $result ** $num;
+            }, $init);
+            break;
     }
 
     return '' . $result;
@@ -100,4 +102,13 @@ function task5 () {
 
 function task6 ($fileName) {
     echo file_get_contents($fileName);
+}
+
+function fileGet ($fileName) 
+{
+    $file = fopen($fileName, 'w');
+    fputs($file, 'Hello again!');
+    fclose($file);
+
+    return $file;
 }
